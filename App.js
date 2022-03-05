@@ -64,9 +64,19 @@ function StatsScreen() {
 
 function StylesScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Styles</Text>
-    </View>
+    <SafeAreaView>
+      <View
+        style={{
+          padding: 5,
+          borderBottomColor: 'black',
+          borderBottomWidth: 0.5,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>{styles}</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 
