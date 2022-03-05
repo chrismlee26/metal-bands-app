@@ -57,10 +57,9 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
-          tabBarStyle: { backgroundColor: "tomato" },
+          tabBarStyle: { backgroundColor: "black" },
           tabBarIcon: ({ color, size }) => {
             let iconName
-
             if (route.name === "Bands") {
               iconName = "bicycle-outline"
             } else if (route.name === "Stats") {
@@ -70,8 +69,8 @@ export default function App() {
             }
             return <Ionicons name={iconName} size={size} color={color} />
           },
-          tabBarActiveTintColor: "black",
-          tabBarInactiveTintColor: "silver",
+          tabBarActiveTintColor: "white",
+          tabBarInactiveTintColor: "#555555",
         })}
       >
         <Tab.Screen
