@@ -48,6 +48,8 @@ const active = data.reduce((acc, data) => acc + (data.split.length !== 4 ? 1 : 0
 const split = data.reduce((acc, data) => acc + (data.split.length === 4 ? 1 : 0), 0)
 const styles = data.reduce((acc, data) => acc.add(data.style), new Set())
 
+
+
 function StatsScreen() {
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -63,6 +65,8 @@ function StatsScreen() {
 }
 
 function StylesScreen() {
+  const stylesArray = Array.from(styles).toString()
+  const formatStyles = stylesArray.split(",").join("\n")
   return (
     <SafeAreaView>
       <View
@@ -74,7 +78,7 @@ function StylesScreen() {
           justifyContent: 'space-between',
         }}
       >
-        <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>{styles}</Text>
+        <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>{formatStyles}</Text>
       </View>
     </SafeAreaView>
   )
