@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { StyleSheet, Text, View, FlatList } from 'react-native'
+import data from "../metal.json"
 
-const Bands = () => {
+function Bands() {
   return (
-    <View>
+    <FlatList>
       <Text>Bands</Text>
-    </View>
+    </FlatList>
   )
 }
 
