@@ -69,15 +69,7 @@ function StylesScreen() {
   const formatStyles = stylesArray.split(",").join("\n")
   return (
     <SafeAreaView>
-      <View
-        style={{
-          padding: 5,
-          borderBottomColor: 'black',
-          borderBottomWidth: 0.5,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-        }}
-      >
+      <View style={{ padding: 10 }}>
         <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>{formatStyles}</Text>
       </View>
     </SafeAreaView>
