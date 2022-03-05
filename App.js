@@ -23,14 +23,13 @@ function HomeScreen() {
                 flexDirection: 'row',
                 justifyContent: 'space-between',
               }}
-
             >
               <View>
                 <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>{item.band_name}</Text>
                 <Text>{item.formed}</Text>
               </View>
               <View style={{ alignItems: 'flex-end' }}>
-                <Text style={{ color: "gray", fontSize: 18, fontWeight: '700' }}>{item.origin}</Text>
+                <Text style={{ color: "gray", fontSize: 18, fontWeight: '500' }}>{item.origin}</Text>
                 <Text>{Intl.NumberFormat().format(item.fans * 1000)}</Text>
               </View>
             </View>
@@ -39,14 +38,34 @@ function HomeScreen() {
       }}
       keyExtractor={(item) => item.ID}
     />
-
   )
 }
 
-function SettingsScreen() {
+const count = data.length
+const fans = data.reduce((acc, data) => acc + data.fans, 0)
+const countries = data.reduce((acc, data) => acc.add(data.origin), new Set())
+const active = data.reduce((acc, data) => acc + (data.split.length !== 4 ? 1 : 0), 0)
+const split = data.reduce((acc, data) => acc + (data.split.length === 4 ? 1 : 0), 0)
+const styles = data.reduce((acc, data) => acc.add(data.style), new Set())
+
+function StatsScreen() {
+  return (
+    <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={{ color: "black", fontSize: 30, fontWeight: '700' }}>Metal 🤘</Text>
+      <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>Count: {count}</Text>
+      <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>Fans: {Intl.NumberFormat().format(fans * 1000)}</Text>
+      <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>Countries: {countries.size}</Text>
+      <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>Active: {active}</Text>
+      <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>Split: {split}</Text>
+      <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>Styles: {styles.size}</Text>
+    </SafeAreaView>
+  )
+}
+
+function StylesScreen() {
   return (
     <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
+      <Text>Styles</Text>
     </View>
   )
 }
@@ -57,7 +76,7 @@ export default function App() {
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
-          tabBarStyle: { backgroundColor: "black" },
+          tabBarStyle: { backgroundColor: "#111" },
           tabBarIcon: ({ color, size }) => {
             let iconName
             if (route.name === "Bands") {
@@ -79,11 +98,11 @@ export default function App() {
         />
         <Tab.Screen
           name="Stats"
-          component={HomeScreen}
+          component={StatsScreen}
         />
         <Tab.Screen
           name="Styles"
-          component={SettingsScreen}
+          component={StylesScreen}
         />
       </Tab.Navigator>
     </NavigationContainer>
