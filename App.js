@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, Text, View, SafeAreaView } from 'react-native';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -9,17 +9,32 @@ import data from "./metal"
 const Tab = createBottomTabNavigator()
 
 function HomeScreen() {
-  console.log(data)
   return (
     <FlatList
       data={data}
       renderItem={({ item }) => {
         return (
-          <View>
-            <Text style={{ color: "black" }}>
-              {item.band_name}
-            </Text>
-          </View>
+          <SafeAreaView>
+            <View
+              style={{
+                padding: 5,
+                borderBottomColor: 'black',
+                borderBottomWidth: 0.5,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+              }}
+
+            >
+              <View>
+                <Text style={{ color: "black", fontSize: 18, fontWeight: '700' }}>{item.band_name}</Text>
+                <Text>{item.formed}</Text>
+              </View>
+              <View style={{ alignItems: 'flex-end' }}>
+                <Text style={{ color: "gray", fontSize: 18, fontWeight: '700' }}>{item.origin}</Text>
+                <Text>{Intl.NumberFormat().format(item.fans * 1000)}</Text>
+              </View>
+            </View>
+          </SafeAreaView>
         )
       }}
       keyExtractor={(item) => item.ID}
